@@ -10,8 +10,53 @@
     <p>Paragraph</p>
 
     <script>
-      d3.select('p').text("Hello World!")
-      d3.select('body').append('p').text("Hi Denis!")
+
+      d3.select('p')
+        .text("Hello World!");
+
+      d3.select('body')
+        .append('p')
+        .style('color', 'green')
+        .text("Hi Denis!");
+
+      let canvas = d3.select('body')
+        .append('svg')
+        .attr('width', 500)
+        .attr('height', 500);
+
+      let circle = canvas.append('circle')
+        .attr('cx', 55)
+        .attr('cy', 55)
+        .attr('r', 50)
+        .attr('fill', 'red');
+
+      let rectangle = canvas.append('rect')
+        .attr('x', 5)
+        .attr('y', 120)
+        .attr('width', 100)
+        .attr('height', 50)
+        .attr('fill', 'blue');
+
+      let line = canvas.append('line')
+        .attr('x1', 5)
+        .attr('x2', 105)
+        .attr('y1', 180)
+        .attr('y2', 250)
+        .attr('stroke', 'black')
+        .attr('stroke-width', 4);
+
+      let dataArray = [80, 40, 120];
+
+      let bars = canvas.selectAll('shape') // normally 'rect' is used, 'shape' doesn't really mean anything here
+        .data(dataArray)
+        .enter()
+          .append('rect')
+          .attr('width', (d) => d)
+          .attr('height', 50)
+          .attr('x', 200)
+          .attr('y', function(d, i) {return i * 100})
+          .attr('fill', 'green')
+
     </script>
 
   </body>
